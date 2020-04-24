@@ -1,11 +1,27 @@
 const express = require("express");
 const morgan = require("morgan");
-const connectDB = require("./config/db");
+//const connectDB = require("./config/db");
+const config = require("config");
 
 const app = express();
 
 //connect database
-connectDB();
+
+const db = config.get("mongoURI");
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI || db, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+    });
+    console.log("MongoDB connected...");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
 
 //MIDDLEWARE
 app.use(express.json({ extended: false }));
