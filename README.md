@@ -1,3 +1,3 @@
 # devconnector
 
-# Backend for devonnector api
+# Backend for devonnector
