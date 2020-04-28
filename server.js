@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const path = require('path');
+const path = require("path");
 const connectDB = require("./config/db");
 
 const app = express();
@@ -12,8 +12,8 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 //react app join
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build','index.html')); //relative path
+app.get("/", (req, res) => {
+  res.send({ message: "HELLO WORLD!s" }); //relative path
 });
 
 //Define routes
